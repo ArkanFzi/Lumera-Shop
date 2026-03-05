@@ -71,13 +71,13 @@ export default function HomePage() {
       try {
         const controller = new AbortController();
         const timeoutId = setTimeout(() => controller.abort(), 8000); // 8 second timeout
-        
+
         const response = await fetch("http://localhost:5000/api/products", {
           signal: controller.signal
         });
-        
+
         clearTimeout(timeoutId);
-        
+
         if (!response.ok) {
           throw new Error("Failed to fetch products");
         }
@@ -365,16 +365,16 @@ export default function HomePage() {
               {/* Main Heading */}
               <div className="space-y-4">
                 <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-[#2b1d1a] leading-tight">
-                  Continue Learning
+                  Discover Your
                   <br />
-                  <span className="text-[#7B4540]">and Unleash your</span>
+                  <span className="text-[#7B4540]">Favorite Taste at</span>
                   <br />
-                  <span className="text-[#2b1d1a]">Brain's Potential.</span>
+                  <span className="text-[#2b1d1a]">Lumera Shop.</span>
                 </h1>
-                <p className="text-lg text-gray-600 max-w-lg">
-                  {isLoggedIn 
-                    ? `Welcome back, ${user.name}! Continue exploring our delicious menu and find your next favorite meal.`
-                    : "Improve your skills and knowledge for better career and future with our delicious food selection."
+                <p className="text-lg text-gray-600 max-w-lg capitalize">
+                  {isLoggedIn
+                    ? `Welcome back, ${user.name}! find the best menu that interests you and don't forget to order.`
+                    : "find the best menu that interests you and don't forget to order."
                   }
                 </p>
               </div>
@@ -387,12 +387,12 @@ export default function HomePage() {
                 className="flex gap-8 pt-4"
               >
                 <div className="text-center">
-                  <div className="text-2xl font-bold text-[#2b1d1a]">230</div>
-                  <div className="text-sm text-gray-500">Mentors</div>
+                  <div className="text-2xl font-bold text-[#2b1d1a]">50+</div>
+                  <div className="text-sm text-gray-500">Menu Items</div>
                 </div>
                 <div className="text-center">
-                  <div className="text-2xl font-bold text-[#2b1d1a]">3K+</div>
-                  <div className="text-sm text-gray-500">Video Courses</div>
+                  <div className="text-2xl font-bold text-[#2b1d1a]">1k+</div>
+                  <div className="text-sm text-gray-500">Happy Customers</div>
                 </div>
               </motion.div>
             </motion.div>
@@ -410,9 +410,9 @@ export default function HomePage() {
                 <div className="absolute -top-4 -right-4 bg-white rounded-full px-4 py-2 shadow-lg border border-red-100">
                   <div className="flex items-center gap-2">
                     <div className="w-8 h-8 bg-red-500 rounded-full flex items-center justify-center text-white font-bold text-sm">
-                      2k
+                      50+
                     </div>
-                    <span className="text-sm font-medium text-gray-600">Online Courses</span>
+                    <span className="text-sm font-medium text-gray-600">Delicious Menus</span>
                   </div>
                 </div>
 
@@ -427,7 +427,7 @@ export default function HomePage() {
                       className="w-full h-full object-contain p-8"
                     />
                   </div>
-                  
+
                   {/* Floating Elements */}
                   <div className="absolute -bottom-4 -left-4 bg-white rounded-2xl p-4 shadow-lg">
                     <div className="flex items-center gap-3">
@@ -435,8 +435,8 @@ export default function HomePage() {
                         <span className="text-2xl">🏆</span>
                       </div>
                       <div>
-                        <div className="font-semibold text-gray-800">230</div>
-                        <div className="text-xs text-gray-500">Mentors</div>
+                        <div className="font-semibold text-gray-800">50+</div>
+                        <div className="text-xs text-gray-500">Menu Items</div>
                       </div>
                     </div>
                   </div>
@@ -447,8 +447,8 @@ export default function HomePage() {
                         <span className="text-2xl">📹</span>
                       </div>
                       <div>
-                        <div className="font-semibold text-gray-800">3K+</div>
-                        <div className="text-xs text-gray-500">Video Courses</div>
+                        <div className="font-semibold text-gray-800">1K+</div>
+                        <div className="text-xs text-gray-500">Happy Customers</div>
                       </div>
                     </div>
                   </div>
@@ -491,7 +491,7 @@ export default function HomePage() {
               <h3 className="text-lg sm:text-xl font-bold text-[#2b1d1a]">
                 Categories
               </h3>
-              
+
               {/* Search Bar Capsul */}
               <motion.div
                 initial={{ opacity: 0, x: 20 }}
@@ -521,11 +521,10 @@ export default function HomePage() {
                   whileHover={{ scale: 1.05, y: -2 }}
                   whileTap={{ scale: 0.95 }}
                   onClick={() => setSelectedCategory(cat.value)}
-                  className={`px-6 py-3 rounded-xl text-sm font-medium whitespace-nowrap transition-all ${
-                    selectedCategory === cat.value
+                  className={`px-6 py-3 rounded-xl text-sm font-medium whitespace-nowrap transition-all ${selectedCategory === cat.value
                       ? "bg-[#7B4540] text-white shadow-lg shadow-[#7B4540]/20"
                       : "bg-white text-[#2b1d1a] border border-[#E8DCC4]/30 hover:border-[#7B4540]/30 hover:bg-[#7B4540]/5"
-                  }`}
+                    }`}
                 >
                   {cat.label}
                 </motion.button>
@@ -560,11 +559,10 @@ export default function HomePage() {
                     whileHover={{ scale: 1.1 }}
                     whileTap={{ scale: 0.9 }}
                     onClick={(e) => toggleFavorite(product, e)}
-                    className={`absolute top-4 right-4 p-2 rounded-full z-10 transition-all ${
-                      isFavorite(product.id)
+                    className={`absolute top-4 right-4 p-2 rounded-full z-10 transition-all ${isFavorite(product.id)
                         ? "bg-pink-100 text-pink-500 shadow-lg"
                         : "bg-white/80 backdrop-blur-sm text-gray-400 hover:bg-white"
-                    }`}
+                      }`}
                   >
                     <Heart
                       size={20}
